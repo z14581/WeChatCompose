@@ -5,36 +5,48 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zqc.wechatcompose.ui.theme.WeChatComposeTheme
 
+
 class MainActivity : ComponentActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
+            var viewModel:WeViewModel = viewModel()
+
             WeChatComposeTheme {
                 Column() {
+                    Text(viewModel.name)
 
+                    Button(onClick = {
+                        viewModel.name = "1232131"
+                    }) {
+                        Text("更新数据")
+                    }
                 }
             }
         }
+
     }
-
-
 }
 
 @Composable
 fun WeBottomBar(slect:Int){
+
+    var viewModel:WeViewModel = viewModel()
+
     Row() {
         TabItem(if (slect == 0) R.drawable.ic_chat_filled else R.drawable.ic_chat_outlined, title = "聊天",Modifier.weight(1f))
         TabItem(if (slect == 1) R.drawable.ic_contacts_filled else R.drawable.ic_contacts_outlined, title = "通讯录",Modifier.weight(1f))
@@ -55,6 +67,21 @@ fun TabItem(@DrawableRes iconId:Int,title:String,modifier: Modifier = Modifier){
 @Preview(showBackground = true)
 @Composable
 fun preview(){
-   WeBottomBar(slect = 1)
+    Text("sssx  x xs")
+
+    var c:WeViewModel = viewModel()
+//    var list = mutableListOf("11","22","33","44","55","66","77","88")
+//
+//
+//    LazyColumn(){
+//        items(list){ name->
+//            Text(text = "列表   $name")
+//        }
+//    }
+
+
+
+
+
 }
 
