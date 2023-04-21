@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     Button(onClick = {
                         viewModel.name = "1232131"
                     }) {
-                        Text("更新数据")
+                        Text("更新数据  tusong")
                     }
                 }
             }
